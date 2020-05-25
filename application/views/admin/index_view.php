@@ -23,6 +23,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="<?= site_url('admin/insertAdmin');?>">DAFTAR AKUN ADMIN</a></li>
         <li><a href="<?= site_url('admin/daftar_akun');?>">DATA AKUN ADMIN</a></li>
+        <li><a href="<?= site_url('admin/lihat_review');?>">LIHAT REVIEW</a></li>
         <li><a href="<?= site_url('admin/obat');?>">OBAT</a></li>
         <li><a href="<?= site_url('admin/transaksi');?>">TRANSAKSI</a></li>
         <li><a href="<?= site_url('admin/logout');?>">LOGOUT <span class="glyphicon glyphicon-log-out"></span></a></li>

@@ -220,4 +220,43 @@ class Admin extends CI_Controller {
     }
   }
 
+  public function lihat_review(){
+    $this->cekLogin();
+    $data['review'] = $this->home_model->getReview();
+    $data['message'] = $this->session->flashdata('msg');
+    $data['view_name'] = 'lihat_review';
+    $this->load->view('admin/index_view', $data);
+  }
+  public function editReview($id_review){
+    $this->cekLogin();
+
+    if($this->input->post('editReview')){
+      if($this->home_model->updateReview($id_review))
+        $this->session->set_flashdata('msg', '<div class="alert alert-success">Review dengan id review <b>'.$id_review .'</b> berhasil diupdate</div>');
+      else
+        $this->session->set_flashdata('msg', '<div class="alert alert-danger"><b>Terjadi kesalahan</b>, review '. $id_review .' gagal diupdate</div>');
+      redirect(site_url('admin/editReview/'.$id_review));
+    }
+    else {
+      $data['review'] = $this->home_model->getReview($id_review);
+      $data['message'] = $this->session->flashdata('msg');
+
+      $data['view_name'] = 'edit_review';
+      $this->load->view('admin/index_view', $data);
+    }
+  }
+
+  public function hapusReview($id_review){
+    $this->cekLogin();
+
+    if($this->home_model->deleteReview($id_review)){
+      $this->session->set_flashdata('msg', '<div class="alert alert-success text-center">Review dengan id review <mark>'. $id_review ."'</mark> berhasil dihapus</div>");
+      redirect(site_url('admin/lihat_review/'.$id_review));
+    }
+    else{
+      $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Review dengan id review <mark>'. $id_review ."</mark> gagal dihapus</div>");
+      redirect(site_url('admin/lihat_review/'.$id_review));
+    }
+  }
+
 }

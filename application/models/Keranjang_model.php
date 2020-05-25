@@ -167,5 +167,3 @@ class Keranjang_model extends CI_Model {
 
 
 }
-
-
